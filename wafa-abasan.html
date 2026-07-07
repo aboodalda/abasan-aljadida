@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وثيقة الوفاء · عبسان الجديدة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #1A1A1A;
+    --olive:     #2D5016;
+    --gold:      #B8860B;
+    --gold-light:#D4A017;
+    --crimson:   #8B1A1A;
+    --parchment: #F8F3E8;
+    --paper:     #FFFEF9;
+    --muted:     #6B6351;
+    --border:    #C9B97A;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink);
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .topbar {
+    background: var(--olive);
+    padding: 6px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar span {
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-family: 'Amiri', serif;
+  }
+  .topbar .dot { color: var(--crimson); }
+  .hero {
+    background: linear-gradient(160deg, #0f2206 0%, #1c3a0a 50%, #0f2206 100%);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,134,11,.08) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,134,11,.08) 40px);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Amiri', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    color: var(--paper);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold-light); }
+  .hero-sub {
+    color: rgba(255,255,255,.5);
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 12px;
+  }
+  .counter-strip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(184,134,11,.15);
+    border: 1px solid rgba(184,134,11,.3);
+    border-radius: 100px;
+    padding: 8px 20px;
+    margin-top: 28px;
+    color: var(--gold-light);
+    font-size: 14px;
+  }
+  .counter-strip strong { font-size: 20px; font-weight: 700; }
+  .main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 40px 60px;
+    gap: 40px;
+  }
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+  .panel {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .panel-title {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,134,11,.2);
+  }
+  label {
+    display: block;
+    color: rgba(255,255,255,.5);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  input[type="text"] {
+    width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    font-size: 17px;
+    outline: none;
+    transition: border-color .2s;
+    direction: rtl;
+  }
+  input[type="text"]:focus { border-color: var(--gold); }
+  input[type="text"]::placeholder { color: rgba(255,255,255,.2); }
+  .btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--olive), #3d6e1e);
+    border: 1px solid rgba(184,134,11,.4);
+    color: var(--gold-light);
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #3d6e1e, #4a8224);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(45,80,22,.5);
+  }
+  .btn-secondary {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.7);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+  .btn-row { display: flex; gap: 10px; }
+  .recent-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+  }
+  .recent-item:last-child { border-bottom: none; }
+  .badge {
+    background: rgba(184,134,11,.15);
+    border: 1px solid rgba(184,134,11,.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    min-width: 60px;
+    text-align: center;
+    font-family: monospace;
+  }
+  .canvas-area { display: flex; flex-direction: column; gap: 16px; }
+  .canvas-wrapper {
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.06);
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .canvas-placeholder {
+    text-align: center;
+    color: rgba(255,255,255,.15);
+    pointer-events: none;
+  }
+  .canvas-placeholder p { font-size: 14px; }
+  canvas { max-width: 100%; max-height: 100%; display: none; border-radius: 12px; }
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255,255,255,.15);
+    font-size: 12px;
+    border-top: 1px solid rgba(255,255,255,.04);
+  }
+  .loader {
+    display: none;
+    width: 36px; height: 36px;
+    border: 3px solid rgba(184,134,11,.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    position: absolute;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; padding: 20px 16px 40px; }
+    .canvas-area { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<div style="background:#1A1A1A;text-align:center;padding:8px 12px;">
+  <a href="index.html" style="color:#D4A017;font-family:'Cairo',sans-serif;font-size:13px;text-decoration:none;">
+    → العودة لموقع عبسان الجديدة
+  </a>
+</div>
+
+<div class="topbar">
+  <span>دولة فلسطين · محافظة خان يونس</span>
+  <span><span class="dot">●</span> ABASAN AL-JADIDA · 2026</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">سجل انتماءك</p>
+  <h1>وثيقة <em>الوفاء</em><br>لبلدة عبسان الجديدة</h1>
+  <p class="hero-sub">وثيقة رقمية تُثبت انتماءك لأرضك وهويتك</p>
+  <div class="counter-strip">
+    <span>إجمالي الوثائق الصادرة</span>
+    <strong id="count">—</strong>
+    <span>وثيقة</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="panel">
+      <div class="panel-title">بيانات الوثيقة</div>
+      <label>الاسم الكامل</label>
+      <input type="text" id="name" placeholder="مثال: محمد أحمد أبو سالم">
+      <button class="btn-primary" onclick="generateCertificate()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        إصدار الوثيقة
+      </button>
+    </div>
+    <div class="panel" id="action-panel" style="display:none">
+      <div class="panel-title">تصدير الوثيقة</div>
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="downloadImage()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          تحميل
+        </button>
+        <button class="btn-secondary" onclick="shareCertificate()">
+          واتساب
+        </button>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">آخر الوثائق</div>
+      <div id="recent-list">
+        <div class="recent-item" style="color:rgba(255,255,255,.2);justify-content:center;font-size:13px;">جارٍ التحميل…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="canvas-area">
+    <div class="canvas-wrapper" id="canvas-wrapper">
+      <div class="canvas-placeholder" id="placeholder">
+        <svg width="64" height="64" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M3 9h18M9 21V9"/>
+        </svg>
+        <p>ستظهر وثيقتك هنا</p>
+      </div>
+      <div class="loader" id="loader"></div>
+      <canvas id="canvas" width="1400" height="1400"></canvas>
+    </div>
+  </div>
+</div>
+
+<footer>وثيقة الوفاء لبلدة عبسان الجديدة · جميع الحقوق محفوظة لأبناء عبسان الجديدة 2026</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCdPq65Vz8tTn76k-XWwdK50ARyvDTLNbg",
+  authDomain: "abasan-certificate.firebaseapp.com",
+  projectId: "abasan-certificate",
+  storageBucket: "abasan-certificate.firebasestorage.app",
+  messagingSenderId: "156602443374",
+  appId: "1:156602443374:web:cb8369c7cf4b40c207a87f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+  let currentName = "";
+let currentNumber = 0;
+
+window.generateCertificate = async function () {
+  const name = document.getElementById("name").value.trim();
+  if (!name) { document.getElementById("name").style.borderColor="#8B1A1A"; return; }
+  document.getElementById("loader").style.display = "block";
+  const snapshot = await getDocs(collection(db, "certificates"));
+  const number   = snapshot.size + 1;
+  await addDoc(collection(db, "certificates"), { name, number, createdAt: serverTimestamp() });
+  document.getElementById("count").textContent = number;
+currentName = name;
+currentNumber = number;
+await drawCertificate(name, number);
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("placeholder").style.display = "none";
+  document.getElementById("canvas").style.display = "block";
+  document.getElementById("action-panel").style.display = "block";
+  loadRecent();
+};
+
+function drawCertificate(name, number) {
+  return new Promise(resolve => {
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const W = 1400, H = 1400;
+    ctx.clearRect(0, 0, W, H);
+
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, "#F9F5E8");
+    bg.addColorStop(0.5, "#FBF7EC");
+    bg.addColorStop(1, "#F5EFD8");
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    for (let i = 0; i < 8000; i++) {
+      ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.015})`;
+      ctx.fillRect(Math.random()*W, Math.random()*H, 1, 1);
+    }
+
+    ctx.strokeStyle = "#1A1A1A"; ctx.lineWidth = 14;
+    ctx.strokeRect(20, 20, W-40, H-40);
+    ctx.strokeStyle = "#B8860B"; ctx.lineWidth = 6;
+    ctx.strokeRect(34, 34, W-68, H-68);
+    ctx.strokeStyle = "#FBF7EC"; ctx.lineWidth = 6;
+    ctx.strokeRect(46, 46, W-92, H-92);
+    ctx.strokeStyle = "#2D5016"; ctx.lineWidth = 4;
+    ctx.strokeRect(58, 58, W-116, H-116);
+
+    function drawCorner(x, y, rot) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.strokeStyle = "#B8860B"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, 40); ctx.lineTo(0, 0); ctx.lineTo(40, 0); ctx.stroke();
+      ctx.fillStyle = "#B8860B";
+      ctx.beginPath();
+      ctx.moveTo(0, 0); ctx.lineTo(8, 8); ctx.lineTo(0, 16); ctx.lineTo(-8, 8);
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+    drawCorner(75, 75, 0);
+    drawCorner(W-75, 75, Math.PI/2);
+    drawCorner(W-75, H-75, Math.PI);
+    drawCorner(75, H-75, -Math.PI/2);
+
+    const band = ctx.createLinearGradient(0, 90, 0, 230);
+    band.addColorStop(0, "rgba(184,134,11,.12)");
+    band.addColorStop(0.5, "rgba(184,134,11,.22)");
+    band.addColorStop(1, "rgba(184,134,11,.04)");
+    ctx.fillStyle = band;
+    ctx.fillRect(80, 90, W-160, 140);
+
+    const logo = new Image(); logo.crossOrigin = "anonymous";
+    logo.onload = () => {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(W/2, 185, 75, 0, Math.PI*2);
+      ctx.closePath(); ctx.clip();
+      ctx.drawImage(logo, W/2-75, 110, 150, 150);
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(W/2, 185, 77, 0, Math.PI*2);
+      ctx.strokeStyle = "#B8860B"; ctx.lineWidth = 3; ctx.stroke();
+      afterLogo();
+    };
+    logo.onerror = afterLogo;
+    logo.src = "https://raw.githubusercontent.com/aboodalda/abasan-certificate/main/FB_IMG_1780833976315.jpg";
+
+    function afterLogo() {
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#2D5016";
+      ctx.font = "700 32px 'Cairo', sans-serif";
+      ctx.fillText("دولة فلسطين · محافظة خان يونس", W/2, 300);
+
+      ctx.font = "700 72px 'Amiri', serif";
+
+ctx.fillStyle = "#1A1A1A";
+ctx.font = "700 72px 'Amiri', serif";
+ctx.fillText("وثيقة الوفاء لبلدة عبسان الجديدة", W/2, 430);
+
+      drawDivider(ctx, W/2, 520, 600);
+
+      const nb = ctx.createLinearGradient(0, 550, 0, 680);
+      nb.addColorStop(0, "rgba(45,80,22,.06)");
+      nb.addColorStop(1, "rgba(45,80,22,.02)");
+      ctx.fillStyle = nb;
+      roundRect(ctx, 200, 545, W-400, 130, 16); ctx.fill();
+      ctx.strokeStyle = "rgba(184,134,11,.4)"; ctx.lineWidth = 1.5;
+      roundRect(ctx, 200, 545, W-400, 130, 16); ctx.stroke();
+
+      ctx.fillStyle = "#6B6351";
+      ctx.font = "400 26px 'Cairo', sans-serif";
+      ctx.fillText("يُشهد بأن", W/2, 580);
+      ctx.fillStyle = "#1A1A1A";
+      ctx.font = "700 78px 'Amiri', serif";
+      ctx.fillText(name, W/2, 655);
+
+      ctx.fillStyle = "#3A3328";
+      ctx.font = "400 36px 'Amiri', serif";
+      ctx.fillText("قد أصدر هذه الوثيقة إثباتاً لانتمائه ووفائه لبلدة عبسان الجديدة الحبيبة،", W/2, 730);
+      ctx.fillText("وشهادةً على هويته وأصالته وعزمه على العودة.", W/2, 785);
+
+      drawDivider(ctx, W/2, 850, 400);
+
+      const serial = "ABASAN-2026-" + String(number).padStart(6, "0");
+const now = new Date();
+const dateStr = now.toLocaleDateString("ar-EG", {
+  year: "numeric", month: "long", day: "numeric"
+});
+
+ctx.fillStyle = "#2D5016";
+ctx.font = "700 32px 'Courier New', monospace";
+ctx.fillText(serial, W/2, 890);
+
+ctx.fillStyle = "#6B6351";
+ctx.font = "400 28px 'Cairo', sans-serif";
+ctx.fillText("تاريخ الإصدار: " + dateStr, W/2, 935);
+      finalize();
+      function finalize() {
+        drawSeal(ctx, W - 200, 950, 110);
+
+        const lineY = 1160;
+        ctx.strokeStyle = "#1A1A1A"; ctx.lineWidth = 1.5;
+        // توقيع يمين
+ctx.beginPath(); ctx.moveTo(200, lineY); ctx.lineTo(520, lineY); ctx.stroke();
+ctx.fillStyle = "#2D5016"; ctx.font = "italic 700 32px 'Amiri', serif";
+ctx.fillText("بلدية عبسان الجديدة", 360, lineY-20);
+ctx.fillStyle = "#1A1A1A"; ctx.font = "600 24px 'Cairo', sans-serif";
+ctx.fillText("لجنة أبناء عبسان الجديدة", 360, lineY+30);
+
+// توقيع يسار
+ctx.beginPath(); ctx.moveTo(W-520, lineY); ctx.lineTo(W-200, lineY); ctx.stroke();
+ctx.fillStyle = "#2D5016"; ctx.font = "italic 700 32px 'Amiri', serif";
+ctx.fillText("بلدية عبسان الجديدة", W-360, lineY-20);
+ctx.fillStyle = "#1A1A1A"; ctx.font = "600 24px 'Cairo', sans-serif";
+ctx.fillText("مكتب وثائق الوفاء", W-360, lineY+30);
+
+        const fb = ctx.createLinearGradient(0, H-180, 0, H-80);
+        fb.addColorStop(0, "rgba(45,80,22,.0)");
+        fb.addColorStop(1, "rgba(45,80,22,.15)");
+        ctx.fillStyle = fb;
+        ctx.fillRect(80, H-180, W-160, 100);
+        ctx.fillStyle = "#2D5016";
+        ctx.font = "700 38px 'Amiri', serif";
+        ctx.fillText("عبسان الجديدة", W/2, H-130);
+        ctx.fillStyle = "#8B1A1A";
+        ctx.font = "400 26px 'Amiri', serif";
+        ctx.fillText("وفاء  ·  انتماء  ·  هوية  ·  أصالة", W/2, H-90);
+
+        resolve();
+      }
+    }
+  });
+}
+
+function drawDivider(ctx, cx, y, halfW) {
+  const g = ctx.createLinearGradient(cx-halfW, y, cx+halfW, y);
+  g.addColorStop(0, "transparent");
+  g.addColorStop(0.3, "#B8860B");
+  g.addColorStop(0.5, "#D4A017");
+  g.addColorStop(0.7, "#B8860B");
+  g.addColorStop(1, "transparent");
+  ctx.strokeStyle = g; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx-halfW, y); ctx.lineTo(cx+halfW, y); ctx.stroke();
+  ctx.fillStyle = "#B8860B";
+  ctx.beginPath();
+  ctx.moveTo(cx, y-7); ctx.lineTo(cx+7, y); ctx.lineTo(cx, y+7); ctx.lineTo(cx-7, y);
+  ctx.closePath(); ctx.fill();
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+function drawSeal(ctx, cx, cy, r) {
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+  const sg = ctx.createRadialGradient(cx, cy, r*0.3, cx, cy, r);
+  sg.addColorStop(0, "rgba(45,80,22,.18)");
+  sg.addColorStop(1, "rgba(45,80,22,.05)");
+  ctx.fillStyle = sg; ctx.fill();
+  ctx.strokeStyle = "#2D5016"; ctx.lineWidth = 4; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, cy, r*0.82, 0, Math.PI*2);
+  ctx.strokeStyle = "#B8860B"; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, cy, r*0.65, 0, Math.PI*2);
+  ctx.strokeStyle = "#2D5016"; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.save();
+  ctx.font = "700 20px 'Cairo', sans-serif";
+  ctx.fillStyle = "#1A1A1A"; ctx.textAlign = "center";
+  ctx.fillText("ختم رسمي", cx, cy-12);
+  ctx.fillStyle = "#2D5016";
+  ctx.font = "600 18px 'Cairo', sans-serif";
+  ctx.fillText("عبسان الجديدة", cx, cy+16);
+  ctx.restore();
+}
+
+window.downloadImage = function () {
+  const a = document.createElement("a");
+  a.download = "وثيقة-الوفاء.png";
+  a.href = document.getElementById("canvas").toDataURL();
+  a.click();
+};
+
+window.shareCertificate = function () {
+  const serial = "ABASAN-2026-" + String(currentNumber).padStart(6, "0");
+  const msg = `🇵🇸 أصدرت وثيقة الوفاء لبلدة عبسان الجديدة\n\nالاسم: ${currentName}\nرقم الوثيقة: ${serial}\n\n✅ تحقق من وثيقتي:\nhttps://aboodalda.github.io/abasan.certificate/?id=${currentNumber}\n\n📜 سجّل اسمك أنت:\nhttps://aboodalda.github.io/abasan.certificate/`;
+  window.open("https://wa.me/?text=" + encodeURIComponent(msg));
+};
+
+async function loadRecent() {
+  const q = query(collection(db, "certificates"), orderBy("number", "desc"), limit(5));
+  const snap = await getDocs(q);
+  const all  = await getDocs(collection(db, "certificates"));
+  document.getElementById("count").textContent = all.size;
+  let html = "";
+  snap.forEach(doc => {
+    const d = doc.data();
+    html += `<div class="recent-item">
+      <span class="badge">ABASAN-${String(d.number).padStart(4,"0")}</span>
+      <span>${d.name}</span>
+    </div>`;
+  });
+  if (!html) html = `<div class="recent-item" style="justify-content:center;color:rgba(255,255,255,.2);font-size:13px;">لا توجد وثائق بعد</div>`;
+  document.getElementById("recent-list").innerHTML = html;
+}
+// صفحة التحقق
+const urlParams = new URLSearchParams(window.location.search);
+const verifyId = urlParams.get("id");
+
+if (verifyId) {
+  document.querySelector(".hero").style.display = "none";
+  document.querySelector(".main").style.display = "none";
+  document.querySelector("footer").style.display = "none";
+
+  const verifyDiv = document.createElement("div");
+  verifyDiv.style.cssText = `
+    max-width: 500px; margin: 60px auto; padding: 20px; text-align: center;
+    font-family: 'Cairo', sans-serif;
+  `;
+  verifyDiv.innerHTML = `<p style="color:#D4A017;font-size:18px;">جارٍ التحقق من الوثيقة...</p>`;
+  document.body.appendChild(verifyDiv);
+
+  const allDocs = await getDocs(collection(db, "certificates"));
+  let found = null;
+  allDocs.forEach(doc => {
+    if (String(doc.data().number) === String(verifyId)) found = doc.data();
+  });
+
+  if (found) {
+    const serial = "ABASAN-2026-" + String(found.number).padStart(6, "0");
+    const date = found.createdAt?.toDate().toLocaleDateString("ar-EG", {
+      year: "numeric", month: "long", day: "numeric"
+    }) || "—";
+    verifyDiv.innerHTML = `
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(184,134,11,.3);border-radius:16px;padding:40px;">
+        <div style="font-size:60px;margin-bottom:16px;">✅</div>
+        <p style="color:#7AB648;font-size:22px;font-weight:700;margin-bottom:24px;">وثيقة صحيحة ومعتمدة</p>
+        <div style="background:rgba(45,80,22,.2);border-radius:10px;padding:20px;margin-bottom:20px;">
+          <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:4px;">الاسم</p>
+          <p style="color:white;font-size:28px;font-family:'Amiri',serif;font-weight:700;">${found.name}</p>
+        </div>
+        <div style="background:rgba(45,80,22,.2);border-radius:10px;padding:16px;margin-bottom:20px;">
+          <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:4px;">رقم الوثيقة</p>
+          <p style="color:#D4A017;font-size:18px;font-family:monospace;font-weight:700;">${serial}</p>
+        </div>
+        <div style="background:rgba(45,80,22,.2);border-radius:10px;padding:16px;margin-bottom:28px;">
+          <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:4px;">تاريخ الإصدار</p>
+          <p style="color:white;font-size:16px;">${date}</p>
+        </div>
+        <a href="https://aboodalda.github.io/abasan.certificate/" 
+           style="display:inline-block;background:linear-gradient(135deg,#2D5016,#3d6e1e);color:#D4A017;
+           padding:12px 28px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700;">
+          سجّل اسمك أنت 🇵🇸
+        </a>
+      </div>
+    `;
+  } else {
+    verifyDiv.innerHTML = `
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(139,26,26,.3);border-radius:16px;padding:40px;">
+        <div style="font-size:60px;margin-bottom:16px;">❌</div>
+        <p style="color:#C0392B;font-size:22px;font-weight:700;">هذه الوثيقة غير موجودة</p>
+        <p style="color:rgba(255,255,255,.4);margin-top:12px;">تأكد من صحة الرابط</p>
+      </div>
+    `;
+  }
+}
+loadRecent();
+</script>
+</body>
+</html>
