@@ -259,6 +259,9 @@ section.alt{ background: var(--paper); }
   grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
   gap: 18px;
 }
+@media (max-width: 900px){
+     .empty-grid{ grid-template-columns: repeat(3, 1fr); }
+}
 .empty-card{
   border: 2px dashed var(--sand-line);
   border-radius: var(--radius);
