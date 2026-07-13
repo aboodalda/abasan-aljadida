@@ -465,3 +465,76 @@ body{ animation: pageFade .5s ease both; }
     opacity:1 !important; transform:none !important;
   }
 }
+/* =========================================================
+   شبكة الأشخاص (أعضاء البلدية / الوجهاء) — بطاقات صغيرة مكثفة
+   ========================================================= */
+.people-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+  gap: 14px;
+}
+@media (max-width: 900px){
+  .people-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+.person-card{
+  background: var(--paper);
+  border: 1px solid var(--sand-line);
+  border-radius: var(--radius);
+  overflow:hidden;
+  text-align:center;
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.person-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(43,34,26,.18);
+}
+.person-card .photo{
+  aspect-ratio: 1/1;
+  background: var(--sand-deep);
+  overflow:hidden;
+}
+.person-card .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.person-card .name{
+  padding: 10px 6px;
+  font-size:.85rem;
+  font-weight:700;
+  color: var(--indigo);
+  line-height:1.4;
+}
+.person-slot{
+  aspect-ratio: 1/1;
+  border: 2px dashed var(--sand-line);
+  border-radius: var(--radius);
+  background: rgba(251,246,234,.5);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color: var(--ink-soft);
+  font-size:.72rem;
+  text-align:center;
+  padding:8px;
+}
+.person-slot svg{ width:26px; height:26px; opacity:.5; }
+.js-reveal .person-card, .js-reveal .person-slot{
+  opacity:0;
+  transform: translateY(18px) scale(.97);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.js-reveal .person-card.in-view, .js-reveal .person-slot.in-view{
+  opacity:1;
+  transform:none;
+}
+.person-card:nth-child(1),.person-slot:nth-child(1){transition-delay:.01s;}
+.person-card:nth-child(2),.person-slot:nth-child(2){transition-delay:.05s;}
+.person-card:nth-child(3),.person-slot:nth-child(3){transition-delay:.09s;}
+.person-card:nth-child(4),.person-slot:nth-child(4){transition-delay:.13s;}
+.person-card:nth-child(5),.person-slot:nth-child(5){transition-delay:.17s;}
+.person-card:nth-child(6),.person-slot:nth-child(6){transition-delay:.21s;}
+@media (prefers-reduced-motion: reduce){
+  .js-reveal .person-card, .js-reveal .person-slot{
+    opacity:1 !important; transform:none !important;
+  }
+}
